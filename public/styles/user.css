@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css?family=Reem+Kufi&display=swap');
+
+ * {
+    font-family: 'Reem Kufi', sans-serif;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+div#layout {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: whitesmoke;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+div#headder {
+    width: 100%;
+    height: 70px;
+    background-color: #506ac1;
+    color: #ffffff;
+    z-index: 2;
+}
+
+div#name {
+    height: fit-content;
+    font-size: 18px;
+    position: absolute;
+    right: 80px;
+    margin: auto;
+    top: calc(70px - 100%);
+    bottom: 0;
+    cursor: context-menu;
+}
+
+div#avatar {
+    height: 35px;
+    width: 35px;
+    background-color: #0000002b;
+    border-radius: 100px;
+    padding: 5px;
+    position: absolute;
+    top: calc(70px - 100%);
+    bottom: 0;
+    margin: auto;
+    right: 15px;
+    cursor: pointer;
+}
+
+div#avatar_txt {
+    position: absolute;
+    top: calc(50px - 100%);
+    bottom: 0;
+    margin: auto;
+    height: fit-content;
+    width: fit-content;
+    left: 17px;
+}
+
+div#chat_list {
+    height: calc(100% - 70px);
+    width: 30%;
+    background-color: white;
+}
+
+div#chats {
+    font-size: 25px;
+    padding: 25px;
+}
+
+input#message {
+    border: none;
+    padding: 10px;
+    border-radius: 100px;
+    padding-left: 20px;
+    position: absolute;
+    width: 90%;
+    bottom: 0;
+    left: 10px;
+    box-shadow: 0px 0px 100px #0000004f;
+}
+
+button#send_message {
+    border: none;
+    padding: 5px;
+    width: calc(10% - 10px);
+    border-radius: 100px;
+    color: white;
+    background-color: #506ac1;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 40px;
+}
+
+div#dropdown {
+    position: absolute;
+    background-color: white;
+    height: calc(100% - 110px);
+    width: 250px;
+    border: none;
+    padding: 20px;
+    right: -300px;
+    top: 70px;
+    z-index: 1;
+    box-shadow: -9px 0px 20px #0000000a;
+    transition: 1s;
+}
+
+/* div#dropdown::after {
+    content: '';
+    position: absolute;
+    height: 0;
+    width: 0;
+    background: black;
+    border: 10px solid white;
+    border-top: 10px #4358a0;
+    border-left: 10px solid #506ac1;
+    border-right: 10px solid #506ac1;
+    top: -7px;
+    right: 20px;
+}
+
+div#dropdown::before {
+    content: '';
+    position: absolute;
+    height: 0;
+    width: 0;
+    background: black;
+    border: 10px solid white;
+    border-top: 10px #4358a0;
+    border-left: 10px solid #506ac1;
+    border-right: 10px solid #506ac1;
+    top: -7px;
+    right: 20px;
+} */
+
+.dpdn-div {
+    color: black;
+    text-decoration: none;
+    background: white;
+    position: relative;
+    left: 10px;
+    right: 10px;
+    padding: 15px;
+    padding-left: 100px;
+    padding-right: 100px;
+    border-radius: 250px;
+    top: 15px;
+    width: fit-content;
+    margin: auto;
+    transition: 0.4s;
+}
+
+.dpdn-div:hover {
+    color: black;
+    text-decoration: none;
+    background: #f5f5f5;
+    position: relative;
+    left: 10px;
+    right: 10px;
+    padding: 15px;
+    padding-left: 100px;
+    padding-right: 100px;
+    border-radius: 250px;
+    top: 15px;
+    width: fit-content;
+    margin: auto;
+}
+
+a.dpdn-link {
+    color: black;
+    text-decoration: none;
+    font-size: 15px;
+}

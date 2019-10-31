@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title> | KChat a chat app by Karan Gandhi</title>
+        
+        <link rel="stylesheet" type="text/css" href="styles/style.css" />
+        <link rel="stylesheet" type="text/css" href="styles/home_page.css" />
+        <link rel="stylesheet" type="text/css" href="styles/loader.css" />
+        <link rel="stylesheet" type="text/css" media="screen and (max-width: 900px) and (min-width: 300px)" href="styles/phone-view.css" />
+        
+        <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+        <script src="javascript/script.js"></script>
+
+    </head>
+    <body>
+        <div class="loader" id="loader">
+            <div class="blob-container">
+                <div class="blob"></div>
+                <div class="blob"></div>
+                <div class="blob"></div>
+                <div class="blob"></div>
+            </div>
+        </div>
+
+        <div class="cover_page">
+            <div class="home-page-background"></div>
+            <div class="headder">
+                <div class="title">
+                    <div class="txt">
+                        <div class="title-bold">Introducing</div>
+                        <div class="title-thin">KChat</div>
+                    </div>
+                </div>
+                <p class="about-kchat">KChat is a light weight minimial chatting application devoloped by Karan Gandhi.</p>
+                <button class="get-started" id="getstarted" onclick="getStarted()">Get Started
+                    <img class="ic_navigate_next_48px" src="images/icons/ic_navigate_next_48px.svg" alt="ic_navigate_next_48px" />
+                </button>
+            </div>
+            <div class="side-phone-instance" id="side-phone-instance">
+                <img src="images/pics/phone-instance.png" alt="phone-instance" class="phone-instance">
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900|Reem+Kufi&display=swap');
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.headder {
+    font-size: 60px;
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    margin: auto;
+    height: fit-content;
+}
+
+.title-bold {
+    font-weight: 800;
+    color: white;
+    position: absolute;
+    left: 140px;
+}
+
+.cover_page {
+    /* background-color: #516bc2; */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+.title {
+    padding: 150px;
+    padding-top: 0;
+}
+
+.home-page-background {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    background-image: url("images/pics/home-page-background.png");
+
+    /* Full height */
+    height: 100%;
+  
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.txt {
+    font-weight: 100;
+    color: #ffffff;
+}
+
+.title-thin {
+    position: absolute;
+    left: 540px;
+}
+
+p.about-kchat {
+    color: white;
+    font-size: 15px;
+    padding-left: 150px;
+    width: 600px;
+}
+
+button#getstarted {
+    margin-left: 150px;
+    margin-top: 80px;
+    padding: 20px;
+    padding-left: 40px;
+    padding-right: 70px;
+    border: none;
+    background-color: #ffffff;
+    border-radius: 100px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+button#getstarted:hover {
+    background-color: #e1e1e1;
+    transition: 0.2s;
+}
+
+button#getstarted:hover > img.ic_navigate_next_48px {
+    left: 300px;
+    transition: 0.2s;
+}
+
+img.ic_navigate_next_48px {
+    height: 20px;
+    position: absolute;
+    left: 295px;
+    top: 89.3034%;
+    transition: 0.2s;
+}
+
+div#side-phone-instance {
+    position: absolute;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    top: 50px;
+}
+
+img.phone-instance {
+    width: calc(550px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+@media only screen and (max-width : 1250px) {
+    img.phone-instance {
+        display: none;
+    }
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title> | KChat a chat app by Karan Gandhi</title>
+        
+        <link rel="stylesheet" type="text/css" href="styles/style.css" />
+        <link rel="stylesheet" type="text/css" href="styles/loader.css" />
+        <link rel="stylesheet" type="text/css" media="screen and (max-width: 900px) and (min-width: 300px)" href="styles/phone-view.css" />
+        
+        <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+
+        <script src="javascript/initialiseFirebase.js"></script>
+        <script src="javascript/auth.js"></script>
+        <script src="javascript/script.js"></script>
+
+    </head>
+    <body>
+        
+        <div id="login_form" class="login_form">
+            <div class="error" id="error">
+                <img src="images/icons/ic_error_48px.svg" id="errimg" />
+                <div class="errortxt" id="errtxt"></div> 
+            </div>
+            <div class="cnt" id="cnt">
+                <form>
+                    <h3 class="Login_text" id="logintxt">Login</h3>
+                    <input type="email" id="email" class="textfield email" placeholder="Email" required/> <br>
+                    <input type="password" id="password" class="textfield password" placeholder="Password" required /> <br>
+
+                    <div class="register" id="register">Don't have a account? <a href="register.html">Sign up!</a></div>
+                    <input type="button" id="submit_btn" class="submit_btn" onclick="login()" value="Login" />      
+                </form>
+            </div>
+        </div>
+        
+        <div id="side_pic" class="side_pic">
+            <div class="side_circle circle1"></div>
+            <div class="side_circle circle2"></div>
+            <div class="side_circle circle3"></div>
+            <div class="side_text">Hey <br> Welcome Back</div>
+        </div>
+
+        <div class="loader" id="loader">
+            <div class="blob-container">
+                <div class="blob"></div>
+                <div class="blob"></div>
+                <div class="blob"></div>
+                <div class="blob"></div>
+            </div>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title> | Chat app by Karan Gandhi</title>
+        
+        <link rel="stylesheet" type="text/css" href="styles/user.css" />
+        <link rel="stylesheet" type="text/css" href="styles/loader.css">
+        <link rel="stylesheet" type="text/css" media="screen and (max-width: 900px) and (min-width: 300px)" href="styles/phone-view.css" />
+
+        <script type="text/javascript" src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+
+        <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+        <script src="javascript/initialiseFirebase.js"></script>        
+        <script src="javascript/UI.js"></script>
+        <script src="javascript/user.js"></script>
+        <script src="javascript/script.js"></script>
+        <!-- <script src="javascript/notifi.js"></script> -->
+        <!-- <script src="javascript/pushNotification.js"></script> -->
+    </head>
+    <body>
+
+        <div id="layout" class="layout">
+            
+            <div id="headder" class="headder">
+                <div class="name" id="name"></div>
+                <div id="avatar" class="avatar" onclick="dropdown()">
+                    <div id="avatar_txt"></div>
+                </div>
+                <div class="dropdown" id="dropdown">
+                    <div class="content">
+                        <div class="dpdn-div"><a href="profile" class="dpdn-link"> Profile </a> </div>
+                        <button class="logout" id="logout" onclick="logout()">Logout</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- <div class="chat_list" id="chat_list">
+                <div class="chats" id="chats">Chats</div>
+            </div> -->
+            
+            <div class="chatRoom" id="chatRoom">
+                <input type="text" class="message" id="message" placeholder="Type a message" />
+                <button class="send_message" id="send_message" onclick="send_message()">Send</button>
+            </div>
+        </div>
+
+        <div class="loader" id="loader">
+            <div class="blob-container">
+                <div class="blob"></div>
+                <div class="blob"></div>
+                <div class="blob"></div>
+                <div class="blob"></div>
+            </div>
+        </div>
+    </body>
+</html>
