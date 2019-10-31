@@ -23,8 +23,10 @@ function onload() {
         }
         eud();
         socket.on("join", (data) => {
-            console.log(merge(data) + " joined");
-            
+            var cname = (merge(data) === udata.name)? "you" : merge(data);
+            console.log(cname + " joined");
+            createMessage(cname + " joined");
+            udata.name = "you";
         });
     });
     
@@ -71,4 +73,8 @@ function logout() {
 // setTimeout(getUserDetails, 3000);
 setTimeout(createHedder, 3000);
 setTimeout(onload, 3000);
-setTimeout(createChatList, 3000);
+
+function send_message() {
+    var m = document.getElementById("message").value;
+    createMessage(`${merge(udata.name)} : ${m}`);
+}

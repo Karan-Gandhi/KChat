@@ -38,22 +38,29 @@ function dropdown() {
     }
 }
 
-function createChatList() {
-    firebase.database().ref("users").once("value").then(data => {
-        const keys = Object.keys(data.val());
+// function createChatList() {
+//     firebase.database().ref("users").once("value").then(data => {
+//         const keys = Object.keys(data.val());
 
-        for (var i = 0; i < keys.length; i++) {
-            if (firebase.auth().currentUser != null) {
-                uid = firebase.auth().currentUser.uid;
+//         for (var i = 0; i < keys.length; i++) {
+//             if (firebase.auth().currentUser != null) {
+//                 uid = firebase.auth().currentUser.uid;
                 
-                if (uid === keys[i]) {
-                    keys.splice(i);
-                }
-            }
-            // console.log(keys);
-        }
-        for (var i = 0; i < keys.length; i++) {
-            // console.log(Object.values(data.val()[keys[i]]["Name"]));
-        }
-    });
+//                 if (uid === keys[i]) {
+//                     keys.splice(i);
+//                 }
+//             }
+//             // console.log(keys);
+//         }
+//         for (var i = 0; i < keys.length; i++) {
+//             // console.log(Object.values(data.val()[keys[i]]["Name"]));
+//         }
+//     });
+// }
+
+function createMessage(message) {
+    mess = document.createElement("div");
+    mess.innerHTML = message;
+    mess.id = "message";
+    document.getElementById("chatRoom").append(mess);
 }
