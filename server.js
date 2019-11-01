@@ -34,6 +34,25 @@ io.sockets.on('connection', (socket) => {
         console.log(users);
         io.sockets.emit('join', data.name);
     });
+
+    socket.on('sendMessage', (message) => {
+        io.sockets.emit('getMessage', message);
+        console.log(message);
+        users.forEach(user => {
+            if (user.cid === socket.id) {
+                user.gotMessage(message);
+            }
+        });
+    });
+
+    socket.on('disconnect', () => {
+        console.log(`Client : ${socket.id} has disconnected`);
+        users.forEach(user => {
+            if (user.cid === socket.id) {
+                users.splice(user);
+            }
+        });
+    });
 });
 
 // app.use(function(req, res, next) {

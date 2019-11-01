@@ -1,4 +1,5 @@
 var udata = "";
+socket = io.connect('http://localhost:3000');
 
 function onload() {
     firebase.auth().onAuthStateChanged(function(user) {
@@ -9,7 +10,6 @@ function onload() {
             document.location.href = "login.html"
         }
     });
-    socket = io.connect('http://localhost:3000');
     firebase.database().ref("users").once("value").then(data => {
         var uid;
         if (firebase.auth().currentUser != null) {
@@ -17,22 +17,17 @@ function onload() {
         }
         udata = {
             uid: uid,
-            name: Object.values(data.val()[uid]["Name"]),
-            uname: Object.values(data.val()[uid]["Email"]),
-            password: Object.values(data.val()[uid]["Password"]),
+            name: merge(Object.values(data.val()[uid]["Name"])),
+            uname: merge(Object.values(data.val()[uid]["Email"])),
+            password: merge(Object.values(data.val()[uid]["Password"])),
         }
         eud();
         socket.on("join", (data) => {
-            var cname = (merge(data) === udata.name)? "you" : merge(data);
-            console.log(cname + " joined");
-            createMessage(cname + " joined");
-            udata.name = "you";
+            console.log(udata.name + " joined");
+            createMessage(udata.name + " joined");
+            // udata.name = "you";
         });
     });
-    
-    // setTimeout(2000, () => eud());
-    
-    console.log(udata);
     
 }
 
@@ -76,5 +71,17 @@ setTimeout(onload, 3000);
 
 function send_message() {
     var m = document.getElementById("message").value;
-    createMessage(`${merge(udata.name)} : ${m}`);
+    var message = {
+        body: m,
+        sender: udata.name,
+    }
+    socket.emit('sendMessage', message);
 }
+socket.on("getMessage", (data) => {
+    if (data.sender === udata.name) {
+        createMessage(`${"You"} : ${data.body}`);
+    } else {
+        createMessage(`${data.sender} : ${data.body}`);
+    }
+    // createMessage(`${data.sender} : ${data.body}`);
+});
