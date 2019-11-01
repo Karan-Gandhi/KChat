@@ -158,6 +158,8 @@ input#submit_btn {
     background: #516bc2;
     color: white;
     font-size: 16px;
+    cursor: pointer;
+    transition: 0.4s;
 }
 input.textfield:focus {
     outline: none;
@@ -165,6 +167,11 @@ input.textfield:focus {
 
 input.submit_btn:focus {
     outline: none;
+    background: #3a4d8c !important;
+}
+
+input.submit_btn:hover {
+    background: #3a4d8c !important;
 }
 
 .register {
