@@ -35,15 +35,29 @@
                         <button class="logout" id="logout" onclick="logout()">Logout</button>
                     </div>
                 </div>
+
+                <!-- <div class="buttons">
+                    <img src="images/icons/chat-46.svg" class="side-btn">
+                    <img src="images/icons/single-01.svg" class="side-btn">
+                    <img src="images/icons/ic_mail_outline_48px.svg" class="side-btn">
+                    <img src="images/icons/single-folded-content.svg" class="side-btn">
+                    <img src="images/icons/settings-gear-63.svg" class="side-btn">
+                </div> -->
             </div>
             
-            <!-- <div class="chat_list" id="chat_list">
-                <div class="chats" id="chats">Chats</div>
-            </div> -->
+            <div class="chat_list" id="chat_list">
+                <!-- <div class="chats" id="chats">Chats</div> -->
+                <div class="search-add-container">
+                    <input type="text" class="chat-search" id="chat-search" placeholder="Search" />
+                    <div class="add-btn"><img src="images/icons/zoom-2.svg" alt="search-btn" class="search-icon"></div>
+                </div>
+                <div class="chat-list" id="chat-list"></div>
+            </div>
             
             <div class="chatRoom" id="chatRoom">
+                <div class="messagesContainer" id="messagesContainer"></div>
                 <input type="text" class="message" id="message" placeholder="Type a message" />
-                <button class="send_message" id="send_message" onclick="send_message()">Send</button>
+                <button class="send_message" id="send_message" onclick="send_message()"><img src="images/icons/ic_keyboard_arrow_up_48px.svg" alt="send" class="send-arrow"></button>
             </div>
         </div>
 

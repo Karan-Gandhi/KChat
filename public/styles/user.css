@@ -13,7 +13,7 @@ div#layout {
     position: absolute;
     height: 100%;
     width: 100%;
-    background-color: whitesmoke;
+    background-color: #f9fafc;
     top: 0;
     left: 0;
     right: 0;
@@ -21,9 +21,9 @@ div#layout {
 }
 
 div#headder {
-    width: 100%;
-    height: 70px;
-    background-color: #506ac1;
+    width: 70px;
+    height: 100%;
+    background-color: #484f61;
     color: #ffffff;
     z-index: 2;
 }
@@ -37,6 +37,7 @@ div#name {
     top: calc(70px - 100%);
     bottom: 0;
     cursor: context-menu;
+    display: none;
 }
 
 div#avatar {
@@ -46,10 +47,10 @@ div#avatar {
     border-radius: 100px;
     padding: 5px;
     position: absolute;
-    top: calc(70px - 100%);
+    top: calc(100px - 100%);
     bottom: 0;
     margin: auto;
-    right: 15px;
+    left: 10px;
     cursor: pointer;
 }
 
@@ -64,16 +65,19 @@ div#avatar_txt {
 }
 
 div#chat_list {
-    height: calc(100% - 70px);
-    width: 30%;
-    background-color: white;
+    height: 100%;
+    width: 375px;
+    background-color: #f3f6fb;
+    position: absolute;
+    top: 0;
+    left: 70px;
 }
 
 div#chats {
     font-size: 25px;
     padding: 25px;
 }
-
+/* 
 input#message {
     border: none;
     padding: 10px;
@@ -97,7 +101,7 @@ button#send_message {
     bottom: 0;
     right: 0;
     height: 40px;
-}
+} */
 
 div#dropdown {
     position: absolute;
@@ -185,9 +189,147 @@ div#message {
     padding: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
-    background: white;
+    background: #f1f2f6;
     width: fit-content;
-    border-radius: 20px;
     margin: 10px;
-    box-shadow: 0 0 10px #0000001c;
+}
+
+div#your-message {
+    position: relative;
+    padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: #7ac2fb;
+    width: fit-content;
+    margin: 10px;
+    color: #ffffff;
+}
+
+.search-add-container {
+    height: fit-content;
+    width: fit-content;
+    left: 0;
+    right: 0;
+    margin: auto;
+    position: absolute;
+    top: 30px;
+}
+
+input#chat-search {
+    border: none;
+    background-color: #e9ecf1;
+    height: 20px;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-right: 80px;
+    width: 150px;
+    transition: 0.4s;    
+}
+
+input#chat-search:focus {
+    outline: none;
+    background-color: #e6e7ec;
+    width: 190px;
+    margin-right: 40px;
+}
+
+input#chat-search:focus > .add-btn {
+    background-color: #e6e7ec;
+}
+
+.add-btn {
+    height: 40px;
+    width: 40px;
+    background-color: #e9ecf1;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+img.side-btn {
+    color: white;
+    width: 25px;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: calc(100% - 0.9px);
+    cursor: pointer;
+}
+
+.buttons {
+    height: calc(100% - 145px);
+    position: absolute;
+    bottom: 0;
+    width: min-content;
+}
+
+div#chatRoom {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: calc(100% - 445px);
+    left: 445px;
+}
+
+input#message {
+    border: none;
+    background-color: #f2f3f7;
+    position: absolute;
+    bottom: 0;
+    height: 30px;
+    padding: 10px;
+    padding-left: 20px;
+    transition: 0.4s;
+    width: calc(100% - 20px);
+}
+
+button#send_message {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 50px;
+    width: 50px;
+}
+
+img.send-arrow {
+    height: 25px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+input#message:focus {
+    outline: none;
+    background-color: #e6e7ec;
+}
+
+img.search-icon {
+    height: 15px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+div#chat-list {
+    position: absolute;
+    top: 110px;
+    width: 100%;
+}
+
+div#uli {
+    width: calc(100% - 40px);
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 45px;
 }

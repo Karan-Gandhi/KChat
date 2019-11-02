@@ -47,11 +47,11 @@ io.sockets.on('connection', (socket) => {
 
     socket.on('disconnect', () => {
         console.log(`Client : ${socket.id} has disconnected`);
-        users.forEach(user => {
-            if (user.cid === socket.id) {
-                users.splice(user);
+        for (var i = 0; i < users.length; i++) {
+            if (users[i].cid === socket.id) {
+                users.splice(i);
             }
-        });
+        }
     });
 });
 

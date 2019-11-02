@@ -58,9 +58,30 @@ function dropdown() {
 //     });
 // }
 
+function createRegisteredUsersList() {
+    firebase.database().ref("users").once("value").then(data => {
+        var users_keys = Object.keys(data.val());
+        var users = Object.values(data.val());
+        users.forEach(user => {
+            var list_item = document.createElement('div');
+            list_item.innerHTML = user.Name;
+            list_item.id = "uli";
+            document.getElementById('chat-list').append(list_item);            
+        });
+    });
+}
+
 function createMessage(message) {
     mess = document.createElement("div");
     mess.innerHTML = message;
     mess.id = "message";
+    document.getElementById("chatRoom").append(mess);
+}
+
+function createYourMessage(message) {
+    mess = document.createElement("div");
+    mess.innerHTML = message;
+    mess.align = "left";
+    mess.id = "your-message";
     document.getElementById("chatRoom").append(mess);
 }

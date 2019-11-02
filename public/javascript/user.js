@@ -23,8 +23,8 @@ function onload() {
         }
         eud();
         socket.on("join", (data) => {
-            console.log(udata.name + " joined");
-            createMessage(udata.name + " joined");
+            console.log(data + " joined");
+            createMessage(data + " joined");
             // udata.name = "you";
         });
     });
@@ -36,8 +36,8 @@ function merge(namearray) {
 
     for (i = 0; i <= namearray.length - 1; i++) {
         if (i == 0) {
-            finalname += namearray[i].toUpperCase();
-            document.getElementById('avatar_txt').innerHTML = namearray[i].toUpperCase();
+            finalname += namearray[i];
+            document.getElementById('avatar_txt').innerHTML = namearray[i];
         } else {
            finalname += namearray[i];
         }
@@ -54,18 +54,10 @@ function logout() {
         // Sign-out successful.
         document.location.href = "login.html"
     }).catch(function(error) {
-        // An error happened.
+        console.log(error);
     });
 }
 
-// function getUserDetails() {
-//     var name = sessionStorage.getItem("name");
-//     var email = sessionStorage.getItem("email");
-//     var password = sessionStorage.getItem("password");
-//     console.log(name, email, password);
-// }
-
-// setTimeout(getUserDetails, 3000);
 setTimeout(createHedder, 3000);
 setTimeout(onload, 3000);
 
@@ -73,15 +65,16 @@ function send_message() {
     var m = document.getElementById("message").value;
     var message = {
         body: m,
-        sender: udata.name,
+        sender: udata,
     }
     socket.emit('sendMessage', message);
+    document.getElementById("message").value = "";
 }
 socket.on("getMessage", (data) => {
-    if (data.sender === udata.name) {
-        createMessage(`${"You"} : ${data.body}`);
+    if (data.sender.uid === udata.uid) {
+        createYourMessage(`${"You"} : ${data.body}`);
     } else {
-        createMessage(`${data.sender} : ${data.body}`);
+        createMessage(`${data.sender.name} : ${data.body}`);
     }
-    // createMessage(`${data.sender} : ${data.body}`);
 });
+
