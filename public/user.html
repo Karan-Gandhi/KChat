@@ -48,7 +48,7 @@
             <div class="chat_list" id="chat_list">
                 <!-- <div class="chats" id="chats">Chats</div> -->
                 <div class="search-add-container">
-                    <input type="text" class="chat-search" id="chat-search" placeholder="Search" />
+                    <input type="text" class="chat-search" id="chat-search" onkeyup="searchForUsers()" placeholder="Search" />
                     <div class="add-btn"><img src="images/icons/zoom-2.svg" alt="search-btn" class="search-icon"></div>
                 </div>
                 <div class="chat-list" id="chat-list"></div>
@@ -57,7 +57,6 @@
             <div class="activeUserHead" id="activeUserHead"></div>
 
             <div class="chatRoom" id="chatRoom">
-                <div class="messagesContainer" id="messagesContainer"></div>
                 <input type="text" class="message" id="message" placeholder="Type a message" />
                 <button class="send_message" id="send_message" onclick="send_message()"><img src="images/icons/ic_keyboard_arrow_up_48px.svg" alt="send" class="send-arrow"></button>
             </div>

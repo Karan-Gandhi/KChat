@@ -56,12 +56,13 @@ div#avatar {
 
 div#avatar_txt {
     position: absolute;
-    top: calc(50px - 100%);
+    top: 5px;
     bottom: 0;
-    margin: auto;
     height: fit-content;
     width: fit-content;
-    left: 17px;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
 
 div#chat_list {
@@ -338,6 +339,7 @@ div#uli {
     padding-right: 20px;
     height: 45px;
     cursor: pointer;
+    transition: 0.4s;
 }
 
 div#avatar-t {
@@ -386,4 +388,14 @@ div#activeUserHead {
 
 div#uli:hover {
     background-color: #e5e9ef;
+}
+
+.active-headder-name-text {
+    position: absolute;
+    top: 5px;
+    bottom: 0;
+    margin: auto;
+    width: fit-content;
+    height: fit-content;
+    left: 80px;
 }

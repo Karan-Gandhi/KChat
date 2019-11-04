@@ -14,7 +14,6 @@ function createHedder() {
         }
         var namearray = Object.values(data.val()[uid]["Name"]);
         var finalname = "";
-
         for (i = 0; i <= namearray.length - 1; i++) {
             if (i == 0) {
                 finalname += namearray[i].toUpperCase();
@@ -23,7 +22,6 @@ function createHedder() {
                 finalname += namearray[i];
             }
         }
-
         document.getElementById("name").innerHTML = finalname;
     });
 }
@@ -60,7 +58,6 @@ function dropdown() {
 
 function toFUpperCase(namearray) {
     var finalname = "";
-
     for (i = 0; i <= namearray.length - 1; i++) {
         if (i == 0) {
             finalname += namearray[i].toUpperCase();
@@ -72,24 +69,35 @@ function toFUpperCase(namearray) {
     return finalname;
 }
 
+var users;
+var userDOM = [];
+var userEU = [];
+
 function createRegisteredUsersList() {
     var colours = [{bgc: "#3F51B5", c: "white"}, {bgc: "#B71C1C", c: "white"}, {bgc: "#0D47A1", c: "white"}, {bgc: "#1B5E20", c: "white"}, {bgc: "#F57F17", c: "white"}, {bgc: "#cacdd1", c: "black"}]
     firebase.database().ref("users").once("value").then(data => {
         var users_keys = Object.keys(data.val());
-        var users = Object.values(data.val());
+        users = Object.values(data.val());
         users.forEach(user => {
-            var list_item = document.createElement('div');
-            list_item.innerHTML = `<div class="t">${toFUpperCase(user.Name)}</div>`;
-            list_item.id = "uli";
-            var i = colours[Math.floor(Math.random() * colours.length)];
-            var avatar = `<div id="avatar-t" class="avatar" style="background-color: ${i.bgc}; color: ${i.c};"><div id="avatar_txt">${user.Name[0].toUpperCase()}</div></div>`
-            list_item.innerHTML += avatar;
-            list_item.innerHTML += `<div class="c-txt">${"$#recent-message"}</div><div class="c-date">${"00:00"}</div>`;
-            document.getElementById('chat-list').append(list_item);
-            list_item.addEventListener("click", (e) => {
-                e.preventDefault();
-                console.log(user);
-            })
+            if (user.Email !== udata.email) {
+                userEU.push(user);
+                var list_item = document.createElement('div');
+                list_item.innerHTML = `<div class="t">${toFUpperCase(user.Name)}</div>`;
+                list_item.id = "uli";
+                var i = colours[Math.floor(Math.random() * colours.length)];
+                var avatar = `<div id="avatar-t" class="avatar" style="background-color: ${i.bgc}; color: ${i.c};"><div id="avatar_txt">${user.Name[0].toUpperCase()}</div></div>`
+                list_item.innerHTML += avatar;
+                list_item.innerHTML += `<div class="c-txt">${"$#recent-message"}</div><div class="c-date">${"00:00"}</div>`;
+                document.getElementById('chat-list').append(list_item);
+                userDOM.push(list_item);
+                list_item.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    console.log(user);
+                    // TODO add to active user
+                    var activebar = document.getElementById("activeUserHead");
+                    activebar.innerHTML = `<div id="avatar-t" class="avatar" style="background-color: ${i.bgc}; color: ${i.c};"><div id="avatar_txt">${user.Name[0].toUpperCase()}</div></div><div class="active-headder-name-text">${toFUpperCase(user.Name)}</div>`;                    
+                });
+            }
         });
     });
 }

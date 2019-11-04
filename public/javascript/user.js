@@ -18,7 +18,7 @@ function onload() {
         udata = {
             uid: uid,
             name: merge(Object.values(data.val()[uid]["Name"])),
-            uname: merge(Object.values(data.val()[uid]["Email"])),
+            email: merge(Object.values(data.val()[uid]["Email"])),
             password: merge(Object.values(data.val()[uid]["Password"])),
         }
         eud();
@@ -60,7 +60,7 @@ function logout() {
 
 setTimeout(createHedder, 3000);
 setTimeout(onload, 3000);
-setTimeout(createRegisteredUsersList, 3000);
+setTimeout(createRegisteredUsersList, 3300);
 
 function send_message() {
     var m = document.getElementById("message").value;
@@ -79,3 +79,26 @@ socket.on("getMessage", (data) => {
     }
 });
 
+function searchForUsers() {
+    input = document.getElementById("chat-search").value;
+    console.log(input);
+    userEU.forEach((user) => {
+        if (udata.email !== user.Email) {
+            // console.log(user);
+            for(var i = 0; i < user.Name.length; i++) {
+                if (input !== "") {
+                    if (user.Name[i].toUpperCase() === input[0].toUpperCase()) {
+                        console.log(userEU.indexOf(user));
+                        console.log(userDOM[userEU.indexOf(user)]);
+                        userDOM[userEU.indexOf(user)].style.display = "block";
+                        break;
+                    } else {
+                        userDOM[userEU.indexOf(user)].style.display = "none";
+                    }
+                } else {
+                    userDOM[userEU.indexOf(user)].style.display = "block";
+                }
+            }
+        }
+    });
+}
