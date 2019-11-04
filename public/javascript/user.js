@@ -60,6 +60,7 @@ function logout() {
 
 setTimeout(createHedder, 3000);
 setTimeout(onload, 3000);
+setTimeout(createRegisteredUsersList, 3000);
 
 function send_message() {
     var m = document.getElementById("message").value;

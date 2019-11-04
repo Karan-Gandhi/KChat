@@ -6,7 +6,7 @@
 
 html, body {
     max-width: 100%;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 div#layout {
@@ -46,11 +46,11 @@ div#avatar {
     background-color: #0000002b;
     border-radius: 100px;
     padding: 5px;
-    position: absolute;
-    top: calc(100px - 100%);
+    position: relative;
+    top: 40px;
     bottom: 0;
     margin: auto;
-    left: 10px;
+    left: 0;
     cursor: pointer;
 }
 
@@ -192,6 +192,7 @@ div#message {
     background: #f1f2f6;
     width: fit-content;
     margin: 10px;
+    z-index: 1;
 }
 
 div#your-message {
@@ -234,8 +235,8 @@ input#chat-search:focus {
     margin-right: 40px;
 }
 
-input#chat-search:focus > .add-btn {
-    background-color: #e6e7ec;
+input#chat-search:active > .add-btn {
+    background-color: #e6e7ec !important;
 }
 
 .add-btn {
@@ -266,33 +267,37 @@ img.side-btn {
 
 div#chatRoom {
     position: absolute;
-    top: 0;
-    height: 100%;
+    height: calc(100% - 100px);
     width: calc(100% - 445px);
     left: 445px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    top: 50px;
 }
 
 input#message {
     border: none;
     background-color: #f2f3f7;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     height: 30px;
     padding: 10px;
     padding-left: 20px;
     transition: 0.4s;
     width: calc(100% - 20px);
+    z-index: 1;
 }
 
 button#send_message {
     border: none;
     background: transparent;
     cursor: pointer;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     right: 0;
     height: 50px;
     width: 50px;
+    z-index: 1;
 }
 
 img.send-arrow {
@@ -332,4 +337,53 @@ div#uli {
     padding-left: 20px;
     padding-right: 20px;
     height: 45px;
+    cursor: pointer;
+}
+
+div#avatar-t {
+    height: 35px;
+    width: 35px;
+    background-color: #0000002b;
+    border-radius: 100px;
+    padding: 5px;
+    position: relative;
+    cursor: pointer;
+    top: -25px;
+}
+
+.t {
+    position: relative;
+    left: 60px;
+    top: 3px;
+}
+
+.c-txt {
+    position: relative;
+    top: -50px;
+    color: grey;
+    left: 65px;
+    font-size: 15px;
+}
+
+.c-date {
+    position: relative;
+    top: -69px;
+    color: grey;
+    right: calc(-100% - -28px);
+    font-size: 13px;
+    width: fit-content;
+}
+
+div#activeUserHead {
+    position: absolute;
+    top: 0;
+    left: 445px;
+    height: 50px;
+    width: calc(100% - 445px);
+    z-index: 2;
+    background-color: #f9fafc;
+}
+
+div#uli:hover {
+    background-color: #e5e9ef;
 }
