@@ -87,7 +87,7 @@ async function register() {
 		// console.log("hello");
 
 
-			setTimeout(dosomethin, 3000);
+			setTimeout(registerUserInDatabase, 3000);
 			setTimeout(checkForAlreadyLoggedInUsers, 5000);
 		
 			// await firebase.auth().onAuthStateChanged(function(user) {
@@ -120,20 +120,18 @@ function checkForAlreadyLoggedInUsers() {
 	});
 }
 
-async function dosomethin() {
+async function registerUserInDatabase() {
 	var user = await firebase.auth().currentUser;
 		
 	// if (user != null) {
 	var uid = user.uid;
-		
-	console.log(uid);
 
 	await firebase.database().ref('users/' + uid).set({
 			Name : name,
 			Email : email,
-			Password : password
+			Password : password,
+			Status: "Hey, I am using KChat",
 	});
-	console.log("hello");
 }
 
 // setTimeout(checkForAlreadyLoggedInUsers, 20000);

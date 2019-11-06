@@ -87,15 +87,14 @@ function createRegisteredUsersList() {
                 var i = colours[Math.floor(Math.random() * colours.length)];
                 var avatar = `<div id="avatar-t" class="avatar" style="background-color: ${i.bgc}; color: ${i.c};"><div id="avatar_txt">${user.Name[0].toUpperCase()}</div></div>`
                 list_item.innerHTML += avatar;
-                list_item.innerHTML += `<div class="c-txt">${"$#recent-message"}</div><div class="c-date">${"00:00"}</div>`;
+                list_item.innerHTML += `<div class="c-txt">${user.Status}</div><div class="c-date">${"00:00"}</div>`;
                 document.getElementById('chat-list').append(list_item);
                 userDOM.push(list_item);
                 list_item.addEventListener("click", (e) => {
                     e.preventDefault();
                     console.log(user);
-                    // TODO add to active user
                     var activebar = document.getElementById("activeUserHead");
-                    activebar.innerHTML = `<div id="avatar-t" class="avatar" style="background-color: ${i.bgc}; color: ${i.c};"><div id="avatar_txt">${user.Name[0].toUpperCase()}</div></div><div class="active-headder-name-text">${toFUpperCase(user.Name)}</div>`;                    
+                    activebar.innerHTML = `<div id="avatar-a" class="avatar" style="background-color: ${i.bgc}; color: ${i.c};"><div id="avatar_txt">${user.Name[0].toUpperCase()}</div></div><div class="active-headder-name-text">${toFUpperCase(user.Name)}</div><div class="active-headder-status-text">${user.Status}</div>`;                    
                 });
             }
         });

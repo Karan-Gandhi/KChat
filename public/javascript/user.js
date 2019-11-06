@@ -71,6 +71,7 @@ function send_message() {
     socket.emit('sendMessage', message);
     document.getElementById("message").value = "";
 }
+
 socket.on("getMessage", (data) => {
     if (data.sender.uid === udata.uid) {
         createYourMessage(`${"You"} : ${data.body}`);
@@ -80,6 +81,7 @@ socket.on("getMessage", (data) => {
 });
 
 function searchForUsers() {
+    // FIXME: other username shown even when specific username typed.
     input = document.getElementById("chat-search").value;
     console.log(input);
     userEU.forEach((user) => {
@@ -101,4 +103,9 @@ function searchForUsers() {
             }
         }
     });
+    // console.log(userEU);
+    
+    // for (var i = 0; i < userEU.length; i++) {
+
+    // }
 }
