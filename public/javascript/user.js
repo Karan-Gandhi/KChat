@@ -81,31 +81,13 @@ socket.on("getMessage", (data) => {
 });
 
 function searchForUsers() {
-    // FIXME: other username shown even when specific username typed.
-    input = document.getElementById("chat-search").value;
-    console.log(input);
-    userEU.forEach((user) => {
-        if (udata.email !== user.Email) {
-            // console.log(user);
-            for(var i = 0; i < user.Name.length; i++) {
-                if (input !== "") {
-                    if (user.Name[i].toUpperCase() === input[0].toUpperCase()) {
-                        console.log(userEU.indexOf(user));
-                        console.log(userDOM[userEU.indexOf(user)]);
-                        userDOM[userEU.indexOf(user)].style.display = "block";
-                        break;
-                    } else {
-                        userDOM[userEU.indexOf(user)].style.display = "none";
-                    }
-                } else {
-                    userDOM[userEU.indexOf(user)].style.display = "block";
-                }
-            }
+    input = document.getElementById("chat-search").value;    
+    for (var i = 0; i < userEU.length; i++) {
+        var txtValue = userEU[i].Name;
+        if (txtValue.toUpperCase().indexOf(input.toUpperCase()) > -1) {
+            userDOM[i].style.display = "";
+        } else {
+            userDOM[i].style.display = "none";
         }
-    });
-    // console.log(userEU);
-    
-    // for (var i = 0; i < userEU.length; i++) {
-
-    // }
+    }
 }

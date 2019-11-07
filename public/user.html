@@ -8,6 +8,7 @@
         
         <link rel="stylesheet" type="text/css" href="styles/user.css" />
         <link rel="stylesheet" type="text/css" href="styles/loader.css">
+        <link rel="stylesheet" type="text/css" href="styles/scrollbar.css">
         <link rel="stylesheet" type="text/css" media="screen and (max-width: 900px) and (min-width: 300px)" href="styles/phone-view.css" />
 
         <script type="text/javascript" src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
@@ -26,28 +27,15 @@
             
             <div id="headder" class="headder">
                 <div class="name" id="name"></div>
-                <div id="avatar" class="avatar" onclick="dropdown()">
+                <div id="avatar" class="avatar">
                     <div id="avatar_txt"></div>
                 </div>
-                <!-- TODO: add logout button -->
-                <div class="dropdown" id="dropdown">
-                    <div class="content">
-                        <div class="dpdn-div"><a href="profile" class="dpdn-link"> Profile </a> </div>
-                        <button class="logout" id="logout" onclick="logout()">Logout</button>
-                    </div>
+                <div class="logout-btn-background" id="logout_btn_background" onclick="logout()">
+                    <img src="images/icons/ic-log-out-icon.png" alt="logout" class="logout-btn" id="logout_btn">
                 </div>
-
-                <!-- <div class="buttons">
-                    <img src="images/icons/chat-46.svg" class="side-btn">
-                    <img src="images/icons/single-01.svg" class="side-btn">
-                    <img src="images/icons/ic_mail_outline_48px.svg" class="side-btn">
-                    <img src="images/icons/single-folded-content.svg" class="side-btn">
-                    <img src="images/icons/settings-gear-63.svg" class="side-btn">
-                </div> -->
             </div>
             
             <div class="chat_list" id="chat_list">
-                <!-- <div class="chats" id="chats">Chats</div> -->
                 <div class="search-add-container">
                     <input type="text" class="chat-search" id="chat-search" onkeyup="searchForUsers()" placeholder="Search" />
                     <div class="add-btn"><img src="images/icons/zoom-2.svg" alt="search-btn" class="search-icon"></div>

@@ -4,9 +4,14 @@
     font-family: 'Reem Kufi', sans-serif;
 }
 
+* :focus {
+    outline: none;
+}
+
 html, body {
     max-width: 100%;
     overflow: hidden;
+    height: 100%;
 }
 
 div#layout {
@@ -73,6 +78,8 @@ div#chat_list {
     top: 0;
     left: 70px;
     z-index: 3;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 div#chats {
@@ -269,12 +276,12 @@ img.side-btn {
 
 div#chatRoom {
     position: absolute;
-    height: calc(100% - 100px);
+    height: calc(100% - 130px);
     width: calc(100% - 445px);
     left: 445px;
     overflow-x: hidden;
     overflow-y: auto;
-    top: 50px;
+    top: 80px;
 }
 
 input#message {
@@ -424,4 +431,34 @@ div#avatar-a {
     left: 80px;
     top: 38px;
     color: grey;
+}
+
+img#logout_btn {
+    height: 15px;
+    position: absolute;
+    margin: auto;
+    cursor: pointer;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+div#logout_btn_background {
+    height: 45px;
+    width: 45px;
+    background-color: transparent;
+    border-radius: 100px;
+    padding: 5px;
+    position: absolute;
+    bottom: 10px;
+    margin: auto;
+    cursor: pointer;
+    left: 0;
+    right: calc(100% - 70px);
+    transition: 0.4s;
+}
+
+div#logout_btn_background:hover {
+    background-color: #3c4251;
 }
