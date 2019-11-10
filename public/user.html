@@ -47,6 +47,27 @@
 
             <div class="chatRoom" id="chatRoom">
                 <input type="text" class="message" id="message" placeholder="Type a message" />
+
+                <div class="emoji-btn" onclick="openEmojiTab()">
+                    <img src="images/icons/ic_mood_48px.svg" class="open-emoji" />
+                </div>
+                
+                <div class="emojis-container" id="emojis-container">
+                    <div class="emojitext">
+                        <div class="e-t"> Emoji</div>
+                    </div>
+                    <div class="e_nav_bar" id="e_nav_bar">
+                        <div class="recent" id="recent">
+                            <img src="https://cdn0.iconfinder.com/data/icons/file-management-system-flat/32/file_managemenr_system_icon_set_flat_style-28-512.png" class="recent-img"/>
+                        </div>
+                        <div class="all" id="all">
+                            <img src="images/icons/ic_sentiment_satisfied_48px.svg" class="all-img"/>
+                        </div>
+                    </div>
+                    <img src="https://icon-library.net/images/cross-png-icon/cross-png-icon-16.jpg" onclick="closeETab()" class="close-icon">
+                    <div class="emojis" id="emojis"></div>
+                </div>
+                
                 <button class="send_message" id="send_message" onclick="send_message()"><img src="images/icons/ic_keyboard_arrow_up_48px.svg" alt="send" class="send-arrow"></button>
             </div>
         </div>

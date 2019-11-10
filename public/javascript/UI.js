@@ -114,4 +114,56 @@ function createYourMessage(message) {
     mess.align = "left";
     mess.id = "your-message";
     document.getElementById("chatRoom").append(mess);
+}   
+
+async function getEmojiCodeFormCSV() {
+    const response = await fetch('emoji.csv');
+    const data = await response.text();
+                                
+    const table = await data.split(/\n/);
+    
+    createEmojiDropdown(table);
+}
+
+function createEmojiDropdown(table) {
+    var i = 0;
+    table.forEach(e => {
+        var a = 0;
+        var row = document.createElement('tr');
+        row.id = "e-row"
+        while (a < 8) {
+            var cols = "&#" + table[i];
+            if (table[i] == undefined) {
+                return;
+            }
+            var cell = document.createElement('td');
+            cell.id = "e-cell";
+            cell.innerHTML = cols;
+            row.append(cell);
+            cell.addEventListener('click', (event) => {
+                document.getElementById('message').value += event.target.innerHTML;
+            });
+            a++;
+            i++;
+        }
+        document.getElementById('emojis').append(row);
+    });    
+}
+
+getEmojiCodeFormCSV();
+
+function closeETab() {
+    var emoji = document.getElementById('emojis-container');
+    emoji.style.display = "none";
+}
+
+function openEmojiTab() {
+    var emoji = document.getElementById('emojis-container');
+    if (emoji.style.display === "none") {
+        emoji.style.display = "block";
+    } else if (emoji.style.display === "block") {
+        emoji.style.display = "none";
+    } else {
+        emoji.style.display = "block";
+    }
 }
