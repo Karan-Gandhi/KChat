@@ -470,6 +470,7 @@ div#emojis {
     background: white;
     overflow: auto;
     margin-top: 100px;
+    transition: 0.4s;
 }
 
 .emojis-container {
@@ -552,7 +553,7 @@ div#e_nav_bar {
     top: 50px;
 }
 
-img.all-img {
+img.all_img {
     width: 23px;
     height: 23px;
     position: absolute;
@@ -564,8 +565,8 @@ img.all-img {
 }
 
 img.recent-img {
-    height: 30px;
-    width: 30px;
+    height: 23px;
+    width: 23px;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -581,6 +582,8 @@ div#recent {
     bottom: 0;
     left: 0;
     top: 0;
+    transition: 0.4s;
+    cursor: pointer;
 }
 
 div#all {
@@ -590,4 +593,45 @@ div#all {
     top: 0;
     bottom: 0;
     left: 50px;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+div#recent:hover > .ab1 {
+    /* background-color: #e6e7ec; */
+    width: 80%;
+}
+
+div#all:hover > .ab2 {
+    /* background-color: #e6e7ec; */
+    width: 80%;
+}
+
+.active-bar {
+    position: absolute;
+    height: 5px;
+    width: 0;
+    background-color: #0d47a1;
+    bottom: 0;
+    transition: 0.4s;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.active {
+    width: 80%;
+}
+
+div#recents {
+    width: 100%;
+    position: absolute;
+    height: 300px;
+    background: white;
+    overflow: auto;
+    margin-top: 100px;
+    transition: 0.4s;
+    top: 0;
+    opacity: 0;
+    z-index: -1;
 }

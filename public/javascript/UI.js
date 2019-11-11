@@ -1,3 +1,5 @@
+var recents;
+
 function createHedder() {
     var uid;
     firebase.database().ref("users").once("value").then(data => {
@@ -35,26 +37,6 @@ function dropdown() {
         dpdn.style.right = "-300px";
     }
 }
-
-// function createChatList() {
-//     firebase.database().ref("users").once("value").then(data => {
-//         const keys = Object.keys(data.val());
-
-//         for (var i = 0; i < keys.length; i++) {
-//             if (firebase.auth().currentUser != null) {
-//                 uid = firebase.auth().currentUser.uid;
-                
-//                 if (uid === keys[i]) {
-//                     keys.splice(i);
-//                 }
-//             }
-//             // console.log(keys);
-//         }
-//         for (var i = 0; i < keys.length; i++) {
-//             // console.log(Object.values(data.val()[keys[i]]["Name"]));
-//         }
-//     });
-// }
 
 function toFUpperCase(namearray) {
     var finalname = "";
@@ -122,10 +104,10 @@ async function getEmojiCodeFormCSV() {
                                 
     const table = await data.split(/\n/);
     
-    createEmojiDropdown(table);
+    createEmojiDropdown(table, "emojis");
 }
 
-function createEmojiDropdown(table) {
+function createEmojiDropdown(table, div) {
     var i = 0;
     table.forEach(e => {
         var a = 0;
@@ -142,11 +124,13 @@ function createEmojiDropdown(table) {
             row.append(cell);
             cell.addEventListener('click', (event) => {
                 document.getElementById('message').value += event.target.innerHTML;
+                recents.push(event.target.innerHTML);
+                console.log(recents);
             });
             a++;
             i++;
         }
-        document.getElementById('emojis').append(row);
+        document.getElementById(div).append(row);
     });    
 }
 
@@ -167,3 +151,46 @@ function openEmojiTab() {
         emoji.style.display = "block";
     }
 }
+
+setTimeout(() => {
+    document.getElementById("ab2").classList.toggle('active');
+    document.getElementById("all").addEventListener("click", (e) => {
+        if(document.getElementById("ab1").classList.contains('active')) {
+            document.getElementById("ab1").classList.toggle('active');
+            document.getElementById("ab2").classList.toggle('active');
+            var all = document.getElementById('emojis');
+            var recent = document.getElementById('recents');
+            all.style.opacity = "1";
+            recent.style.opacity = "0";
+            recent.style.zIndex = "-1";            
+        }
+    });
+
+    document.getElementById("recent").addEventListener("click", (e) => {
+        if(document.getElementById("ab2").classList.contains('active')) {
+            document.getElementById("ab2").classList.toggle('active');
+            document.getElementById("ab1").classList.toggle('active');
+            var all = document.getElementById('emojis');
+            var recent = document.getElementById('recents');
+            all.style.opacity = "0";
+            recent.style.opacity = "1";
+            all.style.zIndex = "-1";            
+        }
+    });
+}, 2000);
+
+function createRecentList() {
+    if (localStorage.getItem("recent_emojis") === null) {
+        recents = [];
+    } else {
+        recents = localStorage.getItem("recent_emojis");
+    }
+}
+
+createRecentList();
+
+// update recent list
+setInterval(() => {
+    createEmojiDropdown(recents, "recents");
+    console.log("s")
+}, 33);
