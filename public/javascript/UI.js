@@ -112,6 +112,7 @@ function createEmojiDropdown(table, div) {
     table.forEach(e => {
         var a = 0;
         var row = document.createElement('tr');
+        var Rrow = document.createElement('tr');
         row.id = "e-row"
         while (a < 8) {
             var cols = "&#" + table[i];
@@ -124,7 +125,8 @@ function createEmojiDropdown(table, div) {
             row.append(cell);
             cell.addEventListener('click', (event) => {
                 document.getElementById('message').value += event.target.innerHTML;
-                recents.push(event.target.innerHTML);
+                recents.unshift(event.target.innerHTML);
+                createERDropdown(recents, "recents");
                 console.log(recents);
             });
             a++;
@@ -163,6 +165,7 @@ setTimeout(() => {
             all.style.opacity = "1";
             recent.style.opacity = "0";
             recent.style.zIndex = "-1";            
+            all.style.zIndex = "1";            
         }
     });
 
@@ -175,6 +178,7 @@ setTimeout(() => {
             all.style.opacity = "0";
             recent.style.opacity = "1";
             all.style.zIndex = "-1";            
+            recent.style.zIndex = "1";            
         }
     });
 }, 2000);
@@ -189,8 +193,41 @@ function createRecentList() {
 
 createRecentList();
 
+function createERDropdown(array, div) {
+    var table = document.getElementById('recents');
+    var cnt = 0;
+
+    var findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index)
+    var duplicates = findDuplicates(recents);
+    
+    for (var i = 0; i < duplicates.length; i++) {
+        recents.splice(recents.indexOf(duplicates[i]), 1);
+    }
+
+    if (recents.length > 64) {
+        recents.splice(0, recents.length - 64)
+    }
+
+    localStorage.setItem("recent_emojis", recents);
+
+    for (var i = 0; i < table.rows.length; i++) {
+        for (var x = 0; x < table.rows[i].cells.length; x++) {
+            if (array[cnt] === undefined) {
+                return;
+            }
+            table.rows[i].cells[x].innerHTML = array[cnt];
+            table.rows[i].cells[x].addEventListener('click', (event) => {
+                document.getElementById('message').value += event.target.innerHTML;
+                recents.unshift(event.target.innerHTML);
+                createERDropdown(recents, "recents");
+            });
+            cnt++;
+        }
+    }
+}
+
 // update recent list
 setInterval(() => {
-    createEmojiDropdown(recents, "recents");
-    console.log("s")
+    // document.getElementById("recents").innerHTML = "";
+    // console.log("s");
 }, 33);

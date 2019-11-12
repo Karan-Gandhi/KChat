@@ -487,6 +487,8 @@ div#emojis {
 td#e-cell {
     padding: 7px;
     cursor: pointer;
+    width: 22.386px;
+    height: 24.204px;
 }
 
 td#e-cell:hover {
@@ -623,7 +625,7 @@ div#all:hover > .ab2 {
     width: 80%;
 }
 
-div#recents {
+table#recents {
     width: 100%;
     position: absolute;
     height: 300px;
@@ -635,3 +637,9 @@ div#recents {
     opacity: 0;
     z-index: -1;
 }
+/* 
+table#recents {
+    position: absolute;
+    top: 0;
+    margin-top: 100px;
+} */
