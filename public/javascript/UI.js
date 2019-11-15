@@ -183,13 +183,16 @@ setTimeout(() => {
     });
 }, 2000);
 
-function createRecentList() {
+async function createRecentList() {
     if (localStorage.getItem("recent_emojis") === null) {
         recents = [];
     } else {
-        recents = localStorage.getItem("recent_emojis");
+        recents = await localStorage.getItem("recent_emojis").split(',');
+        // await createERDropdown(recents, "recents");
     }
 }
+
+setTimeout(() => { createERDropdown(recents, "recents") }, 2000);
 
 createRecentList();
 
@@ -208,6 +211,12 @@ function createERDropdown(array, div) {
         recents.splice(0, recents.length - 64)
     }
 
+    for (var i = 0; i < table.rows.length; i++) {
+        for (var x = 0; x < table.rows[i].cells.length; x++) {
+            table.rows[i].cells[x].removeEventListener(('click'), tableEventListener);
+        }
+    }
+
     localStorage.setItem("recent_emojis", recents);
 
     for (var i = 0; i < table.rows.length; i++) {
@@ -216,18 +225,14 @@ function createERDropdown(array, div) {
                 return;
             }
             table.rows[i].cells[x].innerHTML = array[cnt];
-            table.rows[i].cells[x].addEventListener('click', (event) => {
-                document.getElementById('message').value += event.target.innerHTML;
-                recents.unshift(event.target.innerHTML);
-                createERDropdown(recents, "recents");
-            });
+            table.rows[i].cells[x].addEventListener('click', tableEventListener);
             cnt++;
         }
     }
 }
 
-// update recent list
-setInterval(() => {
-    // document.getElementById("recents").innerHTML = "";
-    // console.log("s");
-}, 33);
+function tableEventListener(event) {
+    document.getElementById('message').value += event.target.innerHTML;
+    recents.unshift(event.target.innerHTML);
+    createERDropdown(recents, "recents");
+}
