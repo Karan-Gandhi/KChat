@@ -306,6 +306,7 @@ button#send_message {
     right: 0;
     height: 50px;
     width: 50px;
+    transition: 0.4s;
     z-index: 1;
 }
 
@@ -462,3 +463,183 @@ div#logout_btn_background {
 div#logout_btn_background:hover {
     background-color: #3c4251;
 }
+
+div#emojis {
+    width: fit-content;
+    height: 300px;
+    background: white;
+    overflow: auto;
+    margin-top: 100px;
+    transition: 0.4s;
+}
+
+.emojis-container {
+    position: fixed;
+    width: fit-content;
+    height: 400px;
+    background: white;
+    bottom: 60px;
+    right: 10px;
+    box-shadow: 0 0 20px #0000001a;
+    display: none;
+}
+
+td#e-cell {
+    padding: 7px;
+    cursor: pointer;
+    width: 22.386px;
+    height: 24.204px;
+}
+
+td#e-cell:hover {
+    background: #f3f6fb;
+}
+
+.emojitext {
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 300px);
+    background-color: #f1f2f6;
+}
+
+.e-t {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 20px;
+}
+
+img.close-icon {
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    top: 30px;
+    right: 20px;
+    cursor: pointer;
+}
+
+img.open-emoji {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.emoji-btn {
+    height: 50px;
+    width: 50px;
+    position: fixed;
+    z-index: 2;
+    bottom: 0;
+    transition: 0.4s;
+    right: 50px;
+    cursor: pointer;
+}
+
+button#send_message:hover {
+    background-color: #cacdd1;
+}
+
+.emoji-btn:hover {
+    background-color: #cacdd1;
+}
+
+div#e_nav_bar {
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    top: 50px;
+}
+
+img.all_img {
+    width: 23px;
+    height: 23px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+img.recent-img {
+    height: 23px;
+    width: 23px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+div#recent {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+div#all {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    top: 0;
+    bottom: 0;
+    left: 50px;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+div#recent:hover > .ab1 {
+    /* background-color: #e6e7ec; */
+    width: 80%;
+}
+
+div#all:hover > .ab2 {
+    /* background-color: #e6e7ec; */
+    width: 80%;
+}
+
+.active-bar {
+    position: absolute;
+    height: 5px;
+    width: 0;
+    background-color: #0d47a1;
+    bottom: 0;
+    transition: 0.4s;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.active {
+    width: 80%;
+}
+
+table#recents {
+    width: 100%;
+    position: absolute;
+    height: 300px;
+    background: white;
+    overflow: auto;
+    margin-top: 100px;
+    transition: 0.4s;
+    top: 0;
+    opacity: 0;
+    z-index: -1;
+}
+/* 
+table#recents {
+    position: absolute;
+    top: 0;
+    margin-top: 100px;
+} */

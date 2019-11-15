@@ -1,3 +1,5 @@
+var recents;
+
 function createHedder() {
     var uid;
     firebase.database().ref("users").once("value").then(data => {
@@ -35,26 +37,6 @@ function dropdown() {
         dpdn.style.right = "-300px";
     }
 }
-
-// function createChatList() {
-//     firebase.database().ref("users").once("value").then(data => {
-//         const keys = Object.keys(data.val());
-
-//         for (var i = 0; i < keys.length; i++) {
-//             if (firebase.auth().currentUser != null) {
-//                 uid = firebase.auth().currentUser.uid;
-                
-//                 if (uid === keys[i]) {
-//                     keys.splice(i);
-//                 }
-//             }
-//             // console.log(keys);
-//         }
-//         for (var i = 0; i < keys.length; i++) {
-//             // console.log(Object.values(data.val()[keys[i]]["Name"]));
-//         }
-//     });
-// }
 
 function toFUpperCase(namearray) {
     var finalname = "";
@@ -114,4 +96,143 @@ function createYourMessage(message) {
     mess.align = "left";
     mess.id = "your-message";
     document.getElementById("chatRoom").append(mess);
+}   
+
+async function getEmojiCodeFormCSV() {
+    const response = await fetch('emoji.csv');
+    const data = await response.text();
+                                
+    const table = await data.split(/\n/);
+    
+    createEmojiDropdown(table, "emojis");
+}
+
+function createEmojiDropdown(table, div) {
+    var i = 0;
+    table.forEach(e => {
+        var a = 0;
+        var row = document.createElement('tr');
+        var Rrow = document.createElement('tr');
+        row.id = "e-row"
+        while (a < 8) {
+            var cols = "&#" + table[i];
+            if (table[i] == undefined) {
+                return;
+            }
+            var cell = document.createElement('td');
+            cell.id = "e-cell";
+            cell.innerHTML = cols;
+            row.append(cell);
+            cell.addEventListener('click', (event) => {
+                document.getElementById('message').value += event.target.innerHTML;
+                recents.unshift(event.target.innerHTML);
+                createERDropdown(recents, "recents");
+                console.log(recents);
+            });
+            a++;
+            i++;
+        }
+        document.getElementById(div).append(row);
+    });    
+}
+
+getEmojiCodeFormCSV();
+
+function closeETab() {
+    var emoji = document.getElementById('emojis-container');
+    emoji.style.display = "none";
+}
+
+function openEmojiTab() {
+    var emoji = document.getElementById('emojis-container');
+    if (emoji.style.display === "none") {
+        emoji.style.display = "block";
+    } else if (emoji.style.display === "block") {
+        emoji.style.display = "none";
+    } else {
+        emoji.style.display = "block";
+    }
+}
+
+setTimeout(() => {
+    document.getElementById("ab2").classList.toggle('active');
+    document.getElementById("all").addEventListener("click", (e) => {
+        if(document.getElementById("ab1").classList.contains('active')) {
+            document.getElementById("ab1").classList.toggle('active');
+            document.getElementById("ab2").classList.toggle('active');
+            var all = document.getElementById('emojis');
+            var recent = document.getElementById('recents');
+            all.style.opacity = "1";
+            recent.style.opacity = "0";
+            recent.style.zIndex = "-1";            
+            all.style.zIndex = "1";            
+        }
+    });
+
+    document.getElementById("recent").addEventListener("click", (e) => {
+        if(document.getElementById("ab2").classList.contains('active')) {
+            document.getElementById("ab2").classList.toggle('active');
+            document.getElementById("ab1").classList.toggle('active');
+            var all = document.getElementById('emojis');
+            var recent = document.getElementById('recents');
+            all.style.opacity = "0";
+            recent.style.opacity = "1";
+            all.style.zIndex = "-1";            
+            recent.style.zIndex = "1";            
+        }
+    });
+}, 2000);
+
+async function createRecentList() {
+    if (localStorage.getItem("recent_emojis") === null) {
+        recents = [];
+    } else {
+        recents = await localStorage.getItem("recent_emojis").split(',');
+        // await createERDropdown(recents, "recents");
+    }
+}
+
+setTimeout(() => { createERDropdown(recents, "recents") }, 2000);
+
+createRecentList();
+
+function createERDropdown(array, div) {
+    var table = document.getElementById('recents');
+    var cnt = 0;
+
+    var findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index)
+    var duplicates = findDuplicates(recents);
+    
+    for (var i = 0; i < duplicates.length; i++) {
+        recents.splice(recents.indexOf(duplicates[i]), 1);
+    }
+
+    if (recents.length > 64) {
+        recents.splice(0, recents.length - 64)
+    }
+
+    for (var i = 0; i < table.rows.length; i++) {
+        for (var x = 0; x < table.rows[i].cells.length; x++) {
+            table.rows[i].cells[x].removeEventListener(('click'), tableEventListener);
+        }
+    }
+
+    localStorage.setItem("recent_emojis", recents);
+
+    for (var i = 0; i < table.rows.length; i++) {
+        for (var x = 0; x < table.rows[i].cells.length; x++) {
+            if (array[cnt] === undefined) {
+                return;
+            }
+            table.rows[i].cells[x].innerHTML = array[cnt];
+            table.rows[i].cells[x].addEventListener('click', tableEventListener);
+            cnt++;
+        }
+    }
+}
+
+function tableEventListener(event) {
+    document.getElementById('message').value += event.target.innerHTML;
+    recents.unshift(event.target.innerHTML);
+    createERDropdown(recents, "recents");
 }
