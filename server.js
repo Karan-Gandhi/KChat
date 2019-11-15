@@ -3,7 +3,9 @@ const app = express();
 const User = require("./user.js");
 require('dotenv').config();
 
-const server = app.listen(process.env.PORT, () => console.log(`Server started at http://localhost:${process.env.PORT}/`));
+const port = process.env.PORT || 3000;
+
+const server = app.listen(port, () => console.log(`Server started at http://localhost:${potr}/`));
 app.use(express.static('public'));
 app.use(express.json({ limit: '1mb' }));
 
