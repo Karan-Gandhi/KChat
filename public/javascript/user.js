@@ -1,5 +1,5 @@
 var udata = "";
-socket = io.connect('https://kchat-karangandhi.herokuapp.com');
+socket = io.connect(document.location.href.replace("/user.html", "/"));
 
 function onload() {
     firebase.auth().onAuthStateChanged(function(user) {
