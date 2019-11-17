@@ -1,5 +1,5 @@
 var udata = "";
-socket = io.connect(document.location.href + "\b\b\b\b\b\b\b\b\b");
+socket = io.connect(document.location.href);
 
 function onload() {
     firebase.auth().onAuthStateChanged(function(user) {
