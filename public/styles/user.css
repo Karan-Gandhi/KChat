@@ -643,3 +643,54 @@ table#recents {
     top: 0;
     margin-top: 100px;
 } */
+
+div#verification_page {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+}
+
+.evic {
+    position: absolute;
+    top: 0;
+    bottom: 100px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: fit-content;
+    width: fit-content;
+}
+
+img.evi {
+    height: 110px;
+}
+
+.evth {
+    width: max-content;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 65px;
+    font-size: 25px;
+    bottom: 0;
+    height: fit-content;
+}
+
+.evt {
+    width: max-content;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 160px;
+    bottom: 0;
+    height: fit-content;
+}

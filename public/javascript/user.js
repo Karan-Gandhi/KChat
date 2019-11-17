@@ -1,4 +1,5 @@
 var udata = "";
+var emailVerified
 socket = io.connect(document.location.href.replace("/user.html", "/"));
 
 function onload() {
@@ -13,8 +14,19 @@ function onload() {
     firebase.database().ref("users").once("value").then(data => {
         var uid;
         if (firebase.auth().currentUser != null) {
-			uid = firebase.auth().currentUser.uid;
+            uid = firebase.auth().currentUser.uid;
+            emailVerified = firebase.auth().currentUser.emailVerified;
         }
+
+        var user = firebase.auth().currentUser;
+        if (!emailVerified) {
+            var verification_page = document.createElement('div');
+            verification_page.id = 'verification_page';
+            verification_page.innerHTML = `<div class="evic"><img class="evi" src="https://www.mailerlite.com/assets/integration/mailercheck-icon.png"></div><div class="evth">Almost there</div><div class="evt">An Email has been sent to your inbox for verification</div>`;
+            document.body.append(verification_page);
+            sendEmailVerification();
+        }
+
         udata = {
             uid: uid,
             name: merge(Object.values(data.val()[uid]["Name"])),
@@ -59,7 +71,7 @@ function logout() {
 }
 
 setTimeout(createHedder, 3000);
-setTimeout(onload, 3000);
+setTimeout(onload, 3300);
 setTimeout(createRegisteredUsersList, 3300);
 
 function send_message() {
@@ -90,4 +102,14 @@ function searchForUsers() {
             userDOM[i].style.display = "none";
         }
     }
+}
+
+function sendEmailVerification() {
+    var user = firebase.auth().currentUser;
+    user.sendEmailVerification().then(function() {
+        // Email sent.
+    }).catch(function(error) {
+        // An error happened.
+        console.log(error);
+    });
 }
