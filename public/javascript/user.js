@@ -1,5 +1,5 @@
 var udata = "";
-socket = io.connect('http://localhost:3000');
+socket = io.connect(document.location.href);
 
 function onload() {
     firebase.auth().onAuthStateChanged(function(user) {
