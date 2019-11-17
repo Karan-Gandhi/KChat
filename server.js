@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const http = require('http').createServer(app);
 const User = require("./user.js");
 require('dotenv').config();
 
@@ -24,7 +23,7 @@ app.get('/getFirebaseData', (request, response) => {
     response.json(config);
 });
 
-const io = require('socket.io') (http);
+const io = require('socket.io') (server);
 users = [];
 
 io.sockets.on('connection', (socket) => {
