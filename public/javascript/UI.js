@@ -1,4 +1,5 @@
 var recents;
+var finalname = " ";
 
 function createHedder() {
     var uid;
@@ -15,7 +16,7 @@ function createHedder() {
 			});
         }
         var namearray = Object.values(data.val()[uid]["Name"]);
-        var finalname = "";
+        finalname = "";
         for (i = 0; i <= namearray.length - 1; i++) {
             if (i == 0) {
                 finalname += namearray[i].toUpperCase();
@@ -27,6 +28,12 @@ function createHedder() {
         document.getElementById("name").innerHTML = finalname;
     });
 }
+
+function createavatarlogo() {
+    document.getElementById('avatar_txt').innerHTML = finalname[0]
+}
+
+setTimeout(createavatarlogo, 3600);
 
 function dropdown() {
     var dpdn = document.getElementById('dropdown');

@@ -694,3 +694,18 @@ img.evi {
     bottom: 0;
     height: fit-content;
 }
+
+.message.is-selected {
+    background-color: #ddd;
+}
+.message.selected-mode {
+    margin-left: 20px;
+}
+input.message-checkbox {
+    position: absolute;
+    /* top: 42px; */
+    display: block;
+    opacity: 0;
+    left: 5px;
+    transition: 0.4s;
+}

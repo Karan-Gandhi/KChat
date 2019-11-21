@@ -105,11 +105,13 @@ function searchForUsers() {
 }
 
 function sendEmailVerification() {
-    var user = firebase.auth().currentUser;
-    user.sendEmailVerification().then(function() {
-        // Email sent.
-    }).catch(function(error) {
-        // An error happened.
-        console.log(error);
+    var actionCodeSettings = {
+        url: `${document.location.href}/?email=` + firebase.auth().currentUser.email
+    };
+    firebase.auth().currentUser.sendEmailVerification().then(function() {
+          // Verification email sent.
+        }).catch(function(error) {
+          // Error occurred. Inspect error.code.
+          console.log(error);
     });
 }

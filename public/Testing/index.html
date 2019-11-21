@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title>Page Title</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <style>
+            .message {
+                background-color: #f1f1f1;
+                border: 1px solid #ccc;
+                border-top: none;
+                padding: 20px;
+                transition: 0.4s;
+            }
+
+            .message:first-child {
+                border-top: 1px solid #ccc;
+            }
+
+            .message.is-selected {
+                background-color: #ddd;
+            }
+            .message.selected-mode {
+                margin-left: 20px;
+            }
+            input.message-checkbox {
+                position: absolute;
+                /* top: 42px; */
+                display: block;
+                opacity: 0;
+                left: 5px;
+                transition: 0.4s;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="message"><input type="checkbox" class="message-checkbox"/>Item 1</div>
+        <div class="message"><input type="checkbox" class="message-checkbox"/>Item 2</div>
+        <div class="message"><input type="checkbox" class="message-checkbox"/>Item 3</div>
+        <div class="message"><input type="checkbox" class="message-checkbox"/>Item 4</div>
+        <div class="message"><input type="checkbox" class="message-checkbox"/>Item 5</div>
+        <div class="message"><input type="checkbox" class="message-checkbox"/>Item 6</div>
+        <div class="message"><input type="checkbox" class="message-checkbox"/>Item 7</div>
+        <div class="message"><input type="checkbox" class="message-checkbox"/>Item 8</div>
+        <div class="message"><input type="checkbox" class="message-checkbox"/>Item 9</div>
+        <div class="message"><input type="checkbox" class="message-checkbox"/>Item 10</div>
+
+        <script>
+            function addMessageLongPressSelectListener() {
+                var delay;
+                var longpress = 800;
+                var checkbox =  document.getElementsByClassName('message-checkbox');
+                var listItems = document.getElementsByClassName('message');
+                var listItem;
+
+                for (var i = 0, j = listItems.length; i < j; i++) {
+                    listItem = listItems[i];
+
+                    listItem.addEventListener('mousedown', function (e) {
+                        var _this = this;
+                        delay = setTimeout(check, longpress);
+
+                        function check() {
+                            _this.classList.add('is-selected');
+                            _this.getElementsByClassName('message-checkbox')[0].checked = true;
+
+                            for (var x = 0; x < listItems.length; x++) {
+                                var lio = listItems[x];
+                                var lin = lio.cloneNode(true);
+                                lio.parentNode.replaceChild(lin, lio);
+
+                                checkbox =  document.getElementsByClassName('message-checkbox');
+                                listItems = document.getElementsByClassName('message');
+
+                                checkbox[x].style.opacity = "1";
+                                listItems[x].classList.add('selected-mode');
+
+                                listItems[x].addEventListener('click', function (e) { 
+                                    e.target.classList.toggle('is-selected');
+
+                                    if (e.target.getElementsByClassName('message-checkbox')[0].checked == true) {
+                                        e.target.getElementsByClassName('message-checkbox')[0].checked = false;
+                                    } else {
+                                        e.target.getElementsByClassName('message-checkbox')[0].checked = true;
+                                    }
+                                });
+                            }
+                        }
+                    }, false);
+
+                    listItem.addEventListener('mouseup', function (e) {
+                        clearTimeout(delay);
+                    });
+                        
+                    listItem.addEventListener('mouseout', function (e) {
+                        clearTimeout(delay);
+                    });
+                }
+            }
+            addMessageLongPressSelectListener();
+
+            setInterval(() => {
+                var none = true;
+                var checkbox =  document.getElementsByClassName('message-checkbox');
+                var listItems = document.getElementsByClassName('message');
+                for (let i = 0; i < checkbox.length; i++) {
+                    if (checkbox[i].checked == true) {
+                        none = false;
+                    }
+                }
+
+                if (none == true) {
+                    for (let x = 0; x < listItems.length; x++) {
+                        listItems[x].classList.remove('selected-mode');
+                        checkbox[x].style.opacity = "0";
+                        addMessageLongPressSelectListener();
+                    }
+                }
+            }, 33);
+        </script>
+    </body>
+</html>
