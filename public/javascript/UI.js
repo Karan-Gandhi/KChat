@@ -33,7 +33,7 @@ function createavatarlogo() {
     document.getElementById('avatar_txt').innerHTML = finalname[0]
 }
 
-setTimeout(createavatarlogo, 3600);
+setTimeout(createavatarlogo, 5600);
 
 function dropdown() {
     var dpdn = document.getElementById('dropdown');
